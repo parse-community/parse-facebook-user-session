@@ -7,7 +7,7 @@ var querystring = require('querystring');
  * @class
  *
  * <p>A middleware module for logging in a Parse.User using Facebook in express.
- * For more information, see <a href="/docs/hosting_guide#webapp-facebook">our
+ * For more information, see <a href="https://parse.com/docs/hosting_guide#webapp-facebook">our
  * hosting guide</a>.</p>
  *
  * <p>Params includes the following:<pre>
