@@ -174,12 +174,15 @@ var parseFacebookUserSession = function(params) {
       return next();
     }
 
-    // If this is the Facebook login redirect URL, then handle the code.
+    // If this is the Facebook login redirect URL, and a code is present, then handle the code.
+    // If a code is not present, begin the login process.
     var absoluteRedirectUri = 'https://' + req.host + relativeRedirectUri;
     if (req.path === relativeRedirectUri) {
-      endLogin(req, res);
-    } else {
-      beginLogin(req, res);
+      if (req.query.code) {
+        endLogin(req, res);
+      } else {
+        beginLogin(req, res);
+      }
     }
   };
 };
