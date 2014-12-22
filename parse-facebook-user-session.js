@@ -139,6 +139,7 @@ var parseFacebookUserSession = function(params) {
     }).then(function(user) {
       maybeLog("Saving Facebook data for user...");
       user.set("name", facebookData.name);
+      user.set("email", facebookData.email);
       return user.save();
 
     }).then(function(user) {
