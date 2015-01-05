@@ -134,7 +134,7 @@ var parseFacebookUserSession = function(params) {
 
     }).then(function(response) {
       maybeLog("Becoming Parse user...");
-      return Parse.User.become(response.sessionToken);
+      return Parse.User.become(response.getSessionToken());
 
     }).then(function(user) {
       maybeLog("Saving Facebook data for user...");
