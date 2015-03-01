@@ -41,7 +41,7 @@ var parseFacebookUserSession = function(params) {
    * Returns the absolute url of the redirect path for this request.
    */
   var getAbsoluteRedirectUri = function(req) {
-    return 'https://' + req.host + relativeRedirectUri;
+    return req.protocol + "://" + req.host + req.app.path() + relativeRedirectUri;
   };
 
   /**
@@ -53,10 +53,9 @@ var parseFacebookUserSession = function(params) {
     Parse.Promise.as().then(function() {
       // Make a request object. Its objectId will be our XSRF token.
       maybeLog("Creating ParseFacebookTokenRequest...");
-      var url = 'https://' + req.host + req.path;
       var request = new Parse.Object("ParseFacebookTokenRequest");
       return request.save({
-        url: url,
+        url: req.url.slice(1),
         ACL: new Parse.ACL()
       });
 
@@ -176,13 +175,10 @@ var parseFacebookUserSession = function(params) {
 
     // If this is the Facebook login redirect URL, and a code is present, then handle the code.
     // If a code is not present, begin the login process.
-    var absoluteRedirectUri = 'https://' + req.host + relativeRedirectUri;
-    if (req.path === relativeRedirectUri) {
-      if (req.query.code) {
-        endLogin(req, res);
-      } else {
-        beginLogin(req, res);
-      }
+    if (req.path === relativeRedirectUri && req.query.code) {
+      endLogin(req, res);
+    } else {
+      beginLogin(req, res);
     }
   };
 };
