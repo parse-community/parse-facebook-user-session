@@ -41,7 +41,7 @@ var parseFacebookUserSession = function(params) {
    * Returns the absolute url of the redirect path for this request.
    */
   var getAbsoluteRedirectUri = function(req) {
-    return req.protocol + "://" + req.host + req.app.path() + relativeRedirectUri;
+    return req.protocol + "://" + req.headers.host + req.app.path() + relativeRedirectUri;
   };
 
   /**
