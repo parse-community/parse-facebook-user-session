@@ -58,7 +58,7 @@ You can access the user on any page with `Parse.User.current`.
       var user = Parse.User.current();
     
       res.render('hello', {
-        message: 'Congrats, you are logged in, ' + user.get('name') + '!'
+        message: 'Congrats, you are logged in, ' + user.get('username') + '!'
       });
     });
 
