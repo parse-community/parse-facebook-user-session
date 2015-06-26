@@ -13,6 +13,7 @@ var querystring = require('querystring');
  * <p>Params includes the following:<pre>
  *   clientId    (required): The client id of the Facebook App.
  *   appSecret   (required): The app secret of the Facebook App.
+ *   scope       (optional): What type of access you need. A comma separated list of scopes.
  *   verbose     (optional): If true, output debug messages to console.log.
  *   redirectUri (optional): The path on this server to use for handling the
  *       redirect callback from Facebook. If this is omitted, it defaults to
@@ -70,7 +71,8 @@ var parseFacebookUserSession = function(params) {
       url = url + querystring.stringify({
         client_id: params.clientId,
         redirect_uri: getAbsoluteRedirectUri(req),
-        state: request.id
+        state: request.id,
+        scope: params.scope
       });
       res.redirect(302, url);
 
@@ -124,7 +126,7 @@ var parseFacebookUserSession = function(params) {
       facebookData = response.data;
       var expiration = moment().add('seconds', expires).format(
           "YYYY-MM-DDTHH:mm:ss.SSS\\Z");
-      
+
       return Parse.FacebookUtils.logIn({
         id: response.data.id,
         access_token: accessToken,
