@@ -12,9 +12,9 @@ as described in
     var parseExpressHttpsRedirect = require('parse-express-https-redirect');
     var parseExpressCookieSession = require('parse-express-cookie-session');
     var parseFacebookUserSession = require('cloud/parse-facebook-user-session');
-    
+
     // ... Configure the express app ...
-    
+
     app.use(parseExpressHttpsRedirect());  // Require user to be on HTTPS.
     app.use(express.bodyParser());
     app.use(express.cookieParser('YOUR_SIGNING_SECRET'));
@@ -34,6 +34,7 @@ on every page, use the `app.use` express method.</p>
       clientId: 'YOUR_FB_CLIENT_ID',
       appSecret: 'YOUR_FB_APP_SECRET',
       redirectUri: '/login',
+      scope: 'user_friends',
     }));
 
 If you'd like to only require Facebook Login on certain pages, you can include
@@ -43,6 +44,7 @@ the middleware in your routing commands.
       clientId: 'YOUR_FB_CLIENT_ID',
       appSecret: 'YOUR_FB_APP_SECRET',
       redirectUri: '/login',
+      scope: 'user_friends',
     }));
 
     // To handle the login redirect.
@@ -56,7 +58,7 @@ You can access the user on any page with `Parse.User.current`.
 
     app.get('/', function(req, res) {
       var user = Parse.User.current();
-    
+
       res.render('hello', {
         message: 'Congrats, you are logged in, ' + user.get('username') + '!'
       });
