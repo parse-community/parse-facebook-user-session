@@ -45,7 +45,7 @@ the middleware in your routing commands.
       appSecret: 'YOUR_FB_APP_SECRET',
       redirectUri: '/login',
       scope: 'user_friends',
-    }));
+    });
 
     // To handle the login redirect.
     app.get('/login', fbLogin, function(req, res) {});
