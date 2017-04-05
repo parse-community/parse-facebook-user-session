@@ -83,3 +83,7 @@ enabled client class creation in your app's settings, if you've previously
 disabled it. Once the `ParseFacebookTokenRequest` class is created, you should
 go into the [class-level permissions](http://blog.parse.com/2014/07/07/parse-security-ii-class-hysteria/) for the class and disable all permissions. This cloud module uses
 master key access to access the tables.
+
+-----
+
+As of April 5, 2017, Parse, LLC has transferred this code to the parse-community organization, and will no longer be contributing to or distributing this code.
